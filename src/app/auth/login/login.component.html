@@ -1,0 +1,23 @@
+<div class="container-lg w-50 ">
+    <h1 class="text-center">Login</h1>
+    <hr>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="email-address" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email-address" placeholder="name@example.com" name="email"
+                formControlName="email">
+            <div class="invalid-feedback">
+                Please choose a username.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="bsdjjkdff45874#$$@#" name="password"
+                formControlName="password">
+            <div class="invalid-feedback">
+                Please choose a username.
+            </div>
+        </div>
+        <button class="btn btn-primary" [disabled]="!loginForm.valid"> Login</button>
+    </form>
+</div>

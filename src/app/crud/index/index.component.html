@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="text-end p-2">
+        <button class="btn btn-primary" (click)="helperService.routeTo('add')">Add New Employee</button>
+    </div>
+    <hr>
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Age</th>
+                <th scope="col">Address</th>
+                <th scope="col" colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees;index as i;">
+                <th scope="row">{{i+1}}</th>
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.age}}</td>
+                <td>{{employee.address}}</td>
+                <td><a (click)="helperService.routeTo('edit/'+employee._id)" class="cursor-pointer">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </a></td>
+                <td class="cursor-pointer" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click)="setEmp(employee._id)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="deleteEmployee()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
