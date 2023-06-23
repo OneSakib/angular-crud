@@ -4,13 +4,15 @@ import { Observable, throwError } from 'rxjs'
 import { catchError, retry } from 'rxjs/operators'
 import { User } from '../interface/user'
 import { Employee } from '../interface/employee';
+// Environments
+import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-  baseUrl: string = 'https://sakibapi.onrender.com'
-  // baseUrl: string = 'http://localhost:8081'
-  constructor(private http: HttpClient) { }
+  baseUrl: string = environment.apiUrl
+  constructor(private http: HttpClient) {
+  }
   // token
   setToken(token: string) {
     localStorage.setItem("token", token)
