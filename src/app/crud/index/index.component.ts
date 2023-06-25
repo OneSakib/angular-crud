@@ -28,7 +28,8 @@ export class IndexComponent implements OnInit {
       this.loading = false;
     },
       err => {
-        console.log("ERROR: ", err)
+        this.config.logOut()
+        this.helperService.routeTo('login')
       })
   }
   setEmp(emp_id: string) {
